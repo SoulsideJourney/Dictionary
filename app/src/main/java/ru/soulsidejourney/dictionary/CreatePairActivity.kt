@@ -31,7 +31,7 @@ class CreatePairActivity : AppCompatActivity() {
         //Сохраняем пару слов в БД
         val firstWord = et_first_word.text.toString()
         val secondWord = et_second_word.text.toString()
-        val pair = ru.soulsidejourney.dictionary.data.Pair(firstWord, secondWord)
+        val pair = ru.soulsidejourney.dictionary.data.Pair(null, firstWord, secondWord)
 
         val id = DictionaryDbTable(this).store(pair)
 

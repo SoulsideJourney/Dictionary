@@ -49,9 +49,10 @@ class DictionaryDbTable(context: Context) {
     private fun parsePairsFromCursor(cursor: Cursor): MutableList<Pair> {
         val pairs = mutableListOf<Pair>()
         while (cursor.moveToNext()) {
+            val id = cursor.getString(_ID)
             val first = cursor.getString(FIRST_WORD_COL)
             val second = cursor.getString(SECOND_WORD_COL)
-            pairs.add(Pair(first, second))
+            pairs.add(Pair(id, first, second))
         }
         cursor.close()
         return pairs

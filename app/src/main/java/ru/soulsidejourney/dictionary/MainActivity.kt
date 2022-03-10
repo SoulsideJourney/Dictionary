@@ -14,7 +14,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import ru.soulsidejourney.dictionary.R
-import ru.soulsidejourney.dictionary.data.DataStorage
 import ru.soulsidejourney.dictionary.data.DictionaryAdapter
 import ru.soulsidejourney.dictionary.databinding.ActivityMainBinding
 import ru.soulsidejourney.dictionary.db.DictionaryDbTable
@@ -25,7 +24,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val dictionary = DictionaryDbTable(this).readAllPairs()
-        val adapter = DictionaryAdapter(this, dictionary)
+        val adapter = DictionaryAdapter(this, dictionary) { position ->
+            val pairs = dictionary[position]
+            switchTo(CreatePairActivity::class.java)
+        }
 
         val list = findViewById<RecyclerView>(R.id.list)
         list.adapter = adapter
@@ -48,6 +50,8 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
+
+
 
     private fun switchTo(c: Class<*>) {
         val intent = Intent(this, c)

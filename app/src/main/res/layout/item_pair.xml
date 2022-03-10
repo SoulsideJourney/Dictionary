@@ -7,11 +7,21 @@
     android:id="@+id/layout">
 
     <TextView
+        android:id="@+id/pair_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:textSize="25sp"
+        android:visibility="visible"
+        tools:text="@tools:sample/cities" />
+
+    <TextView
         android:id="@+id/first_word"
+        android:layout_toEndOf="@+id/pair_id"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
         android:textSize="25sp"
         tools:text="@tools:sample/cities" />
 

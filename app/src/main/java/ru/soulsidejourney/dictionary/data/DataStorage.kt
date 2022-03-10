@@ -1,6 +1,6 @@
 package ru.soulsidejourney.dictionary.data
 
-object DataStorage {
+/*object DataStorage {
     fun getSampleList(): List<Pair> {
         return listOf(
             Pair(
@@ -46,3 +46,4 @@ object DataStorage {
         )
     }
 }
+*/
