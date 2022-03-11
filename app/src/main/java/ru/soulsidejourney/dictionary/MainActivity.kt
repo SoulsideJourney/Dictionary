@@ -26,7 +26,8 @@ class MainActivity : AppCompatActivity() {
         val dictionary = DictionaryDbTable(this).readAllPairs()
         val adapter = DictionaryAdapter(this, dictionary) { position ->
             val pairs = dictionary[position]
-            switchTo(CreatePairActivity::class.java)
+            val intent = EditPairActivity.createIntent(this, pairs)
+            startActivity(intent)
         }
 
         val list = findViewById<RecyclerView>(R.id.list)

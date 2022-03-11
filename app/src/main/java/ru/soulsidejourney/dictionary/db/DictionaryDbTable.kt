@@ -35,6 +35,24 @@ class DictionaryDbTable(context: Context) {
         return id
     }
 
+    fun edit(pair: Pair) : Int {
+        val db = dbHelper.writableDatabase
+
+        val values = ContentValues()
+        with(values){
+            put(FIRST_WORD_COL, pair.firstWord)
+            put(SECOND_WORD_COL, pair.secondWord)
+        }
+
+        val id = db.transaction {
+            update(TABLE_NAME, values, "id = ${pair.id}", null)
+        }
+
+        Log.d(TAG, "Пара слов перезаписана в БД ${pair}")
+
+        return id
+    }
+
     fun readAllPairs(): List<Pair> {
         val columns = arrayOf(_ID, FIRST_WORD_COL, SECOND_WORD_COL)
         val order = "$_ID ASC"

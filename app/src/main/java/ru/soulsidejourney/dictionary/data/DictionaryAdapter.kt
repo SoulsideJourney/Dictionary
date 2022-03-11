@@ -33,7 +33,7 @@ class DictionaryAdapter(Context : Context,
         itemView: View,
         listener: (position: Int) -> Unit
     ) : RecyclerView.ViewHolder(itemView) {
-        private val pair_id: TextView = itemView.findViewById(R.id.pair_id)
+        private val pairId: TextView = itemView.findViewById(R.id.pair_id)
         private val firstWord: TextView = itemView.findViewById(R.id.first_word)
         private val secondWord: TextView = itemView.findViewById(R.id.second_word)
 
@@ -48,7 +48,7 @@ class DictionaryAdapter(Context : Context,
             }
         }
         fun bind(pair: Pair) {
-            pair_id.text = pair.id
+            pairId.text = pair.id
             firstWord.text = pair.firstWord
             secondWord.text = pair.secondWord
         }
