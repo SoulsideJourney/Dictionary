@@ -36,7 +36,7 @@ class CreatePairActivity : AppCompatActivity() {
         val id = DictionaryDbTable(this).store(pair)
 
         if (id == -1L){
-            displayErrorMessage("Херня какая-то")
+            displayErrorMessage("Ошибка")
         } else {
             //Вываливаемся обратно в главное меню
             val intent = Intent(this, MainActivity::class.java)

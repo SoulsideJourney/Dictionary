@@ -49,7 +49,7 @@ class EditPairActivity : AppCompatActivity() {
         val id = DictionaryDbTable(this).edit(pair)
 
         if (id == -1){
-            displayErrorMessage("Херня какая-то")
+            displayErrorMessage("Ошибка редактирования")
         } else {
             //Вываливаемся обратно в главное меню
             val intent = Intent(this, MainActivity::class.java)
@@ -57,7 +57,22 @@ class EditPairActivity : AppCompatActivity() {
         }
     }
 
+    fun deletePair(view: View) {
+        Log.d(TAG, "Попытка удаления пары")
 
+        //Удаление пары слов из БД
+        val pairId = tv_pair_id.text.toString()
+
+        val id = DictionaryDbTable(this).delete(pairId)
+
+        if (id == -1){
+            displayErrorMessage("Ошибка удаления")
+        } else {
+            //Вываливаемся обратно в главное меню
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
     private fun displayErrorMessage(message: String) {
         tv_error.text = message
@@ -73,6 +88,8 @@ class EditPairActivity : AppCompatActivity() {
             return intent
         }
     }
+
+
 
 }
 

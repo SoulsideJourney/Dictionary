@@ -53,6 +53,18 @@ class DictionaryDbTable(context: Context) {
         return id
     }
 
+    fun delete (id: String) : Int {
+        val db = dbHelper.writableDatabase
+
+        val id = db.transaction {
+            delete(TABLE_NAME, "id = ${id}", null)
+        }
+
+        Log.d(TAG, "Пара слов удалена из БД")
+
+        return id
+    }
+
     fun readAllPairs(): List<Pair> {
         val columns = arrayOf(_ID, FIRST_WORD_COL, SECOND_WORD_COL)
         val order = "$_ID ASC"
