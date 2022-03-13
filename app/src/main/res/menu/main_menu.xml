@@ -3,6 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/add_pair"
-        android:title="@string/add_pair"
-        app:showAsAction="ifRoom"/>
+        android:title="@string/add_pair"/>
+    <item
+        android:title="Сортировка">
+        <menu>
+            <item
+                android:id="@+id/sort_by_first_word"
+                android:title="По первому слову" />
+            <item
+                android:id="@+id/sort_by_second_word"
+                android:title="По второму слову" />
+        </menu>
+    </item>
 </menu>

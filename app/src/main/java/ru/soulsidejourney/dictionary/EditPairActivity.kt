@@ -89,8 +89,6 @@ class EditPairActivity : AppCompatActivity() {
         }
     }
 
-
-
 }
 
 private fun EditText.isBlank() = this.text.isBlank()

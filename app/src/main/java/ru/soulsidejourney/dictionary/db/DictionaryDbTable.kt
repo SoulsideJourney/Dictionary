@@ -65,9 +65,9 @@ class DictionaryDbTable(context: Context) {
         return id
     }
 
-    fun readAllPairs(): List<Pair> {
+    fun readAllPairs(order: String): List<Pair> {
         val columns = arrayOf(_ID, FIRST_WORD_COL, SECOND_WORD_COL)
-        val order = "$_ID ASC"
+        //val order = "$_ID ASC"
 
         val db = dbHelper.readableDatabase
 
