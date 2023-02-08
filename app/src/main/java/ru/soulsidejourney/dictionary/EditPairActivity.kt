@@ -8,20 +8,21 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_create_pair.et_first_word
-import kotlinx.android.synthetic.main.activity_create_pair.et_second_word
-import kotlinx.android.synthetic.main.activity_create_pair.tv_error
-import kotlinx.android.synthetic.main.activity_edit_pair.*
 import ru.soulsidejourney.dictionary.data.Pair
+import ru.soulsidejourney.dictionary.databinding.ActivityEditPairBinding
 import ru.soulsidejourney.dictionary.db.DictionaryDbTable
 import java.lang.IllegalArgumentException
 
 class EditPairActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityEditPairBinding
     private val TAG = CreatePairActivity::class.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_pair)
+        binding = ActivityEditPairBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        //setContentView(R.layout.activity_edit_pair)
 
         val pair = intent?.getParcelableExtra<Pair>(KEY)
             ?: throw IllegalArgumentException("Missing argument")
@@ -34,16 +35,16 @@ class EditPairActivity : AppCompatActivity() {
     fun editPair(view: View) {
         Log.d(TAG, "Попытка перезаписи пары")
 
-        if(et_first_word.isBlank() || et_second_word.isBlank()) {
+        if(binding.etFirstWord.isBlank() || binding.etSecondWord.isBlank()) {
             Log.d(TAG, "Пара слов не сохранена: не все поля заполнены")
             displayErrorMessage("Нужно заполнить все поля")
             return
         }
 
         //Сохраняем пару слов в БД
-        val pairId = tv_pair_id.text.toString()
-        val firstWord = et_first_word.text.toString()
-        val secondWord = et_second_word.text.toString()
+        val pairId = binding.tvPairId.text.toString()
+        val firstWord = binding.etFirstWord.text.toString()
+        val secondWord = binding.etSecondWord.text.toString()
         val pair = ru.soulsidejourney.dictionary.data.Pair(pairId, firstWord, secondWord)
 
         val id = DictionaryDbTable(this).edit(pair)
@@ -61,7 +62,7 @@ class EditPairActivity : AppCompatActivity() {
         Log.d(TAG, "Попытка удаления пары")
 
         //Удаление пары слов из БД
-        val pairId = tv_pair_id.text.toString()
+        val pairId = binding.tvPairId.text.toString()
 
         val id = DictionaryDbTable(this).delete(pairId)
 
@@ -75,8 +76,8 @@ class EditPairActivity : AppCompatActivity() {
     }
 
     private fun displayErrorMessage(message: String) {
-        tv_error.text = message
-        tv_error.visibility = View.VISIBLE
+        binding.tvError.text = message
+        binding.tvError.visibility = View.VISIBLE
     }
 
     companion object {
